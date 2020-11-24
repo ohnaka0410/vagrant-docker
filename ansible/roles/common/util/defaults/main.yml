@@ -1,0 +1,6 @@
+---
+util_yum_package_list:
+  - wget
+  - vim
+  - rsync
+  - git

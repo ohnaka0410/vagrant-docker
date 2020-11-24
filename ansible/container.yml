@@ -1,0 +1,7 @@
+---
+- name: Container Servers
+  hosts:
+    - container
+  become: yes
+  roles:
+    - docker

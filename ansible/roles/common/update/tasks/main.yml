@@ -1,0 +1,6 @@
+---
+- name: Yum Update
+  yum:
+    name: "*"
+    state: latest
+    exclude: kernel* centos*

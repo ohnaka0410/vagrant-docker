@@ -1,0 +1,9 @@
+---
+dependencies:
+  - role: common/selinux
+  - role: common/timezone
+  - role: common/update
+  - role: common/util
+  - role: common/chrony
+  # - role: common/bashrc
+  - role: common/mot

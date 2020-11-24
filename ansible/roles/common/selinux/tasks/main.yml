@@ -1,0 +1,11 @@
+---
+- name: Install Util
+  yum:
+    name:
+      - python3-libselinux
+    state: present
+
+- name: Disable
+  selinux:
+    policy: targeted
+    state: permissive

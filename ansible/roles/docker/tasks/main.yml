@@ -1,0 +1,30 @@
+---
+- name: Add Yum Repo
+  get_url:
+    url: "https://download.docker.com/linux/{{ ansible_distribution | lower }}/docker-ce.repo"
+    dest: /etc/yum.repos.d/docer-ce.repo
+
+- name: Install docker
+  yum:
+    name:
+      - docker-ce
+    state: present
+
+- name: Vagrant user add to docker group
+  user:
+    name: vagrant
+    groups:
+      - docker
+    append: yes
+
+- name: Service is running and enabled
+  systemd:
+    name: docker.service
+    state: started
+    enabled: yes
+
+- name: Install Docker Compose
+  get_url:
+    url: "https://github.com/docker/compose/releases/download/{{docker_compose_version}}/docker-compose-{{ ansible_system }}-{{ ansible_machine }}"
+    dest: /usr/bin/docker-compose
+    mode: 0755

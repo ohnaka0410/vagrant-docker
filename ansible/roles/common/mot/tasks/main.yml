@@ -1,0 +1,8 @@
+---
+- name: Send conf files
+  copy:
+    src: "{{ item }}"
+    dest: "{{ item | replace(role_path + '/files/', '/') }}"
+    backup: yes
+  with_fileglob:
+    - "etc/*"

@@ -1,0 +1,22 @@
+---
+- name: Install
+  yum:
+    name:
+      - chrony
+    state: present
+
+- name: Send conf files
+  copy:
+    src: "{{ item }}"
+    dest: "{{ item | replace(role_path + '/files/', '/') }}"
+    backup: yes
+  with_fileglob:
+    - "etc/*"
+  notify:
+    - restart chrony
+
+- name: Service is running and enabled
+  systemd:
+    name: chronyd.service
+    state: started
+    enabled: yes
